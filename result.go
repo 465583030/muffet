@@ -28,7 +28,7 @@ func (r result) String(v bool) string {
 	}
 
 	return strings.Join(
-		append(append([]string{color.YellowString(r.url)},
+		append(append([]string{r.url},
 			ss...),
 			formatMessages(color.RedString("ERROR"), r.errorMessages)...),
 		"\n")

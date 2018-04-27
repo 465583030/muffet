@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"net/url"
 	"sync"
 
+	"github.com/fatih/color"
 	"github.com/yhat/scrape"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
@@ -104,7 +104,7 @@ func (c checker) checkPage(p page) {
 			if err == nil {
 				sc <- u.String()
 			} else {
-				ec <- fmt.Sprintf("%v (%v)", u, err)
+				ec <- u.String() + "\n\t\t" + color.YellowString(err.Error())
 			}
 
 			if n.DataAtom == atom.A && p != nil && !c.donePages.Add(p.URL().String()) && p.URL().Hostname() == c.hostname {
